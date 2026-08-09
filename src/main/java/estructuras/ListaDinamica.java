@@ -1,0 +1,51 @@
+package estructuras;
+
+
+public class ListaDinamica<T> {
+    
+    private NodoGenerico<T> cabeza;
+    private int tamaño;
+
+    public ListaDinamica() {
+        this.cabeza = null;
+        this.tamaño = 0;
+    }
+
+    public void agregar(T dato) {
+        NodoGenerico<T> nuevoNodo = new NodoGenerico<>(dato);
+        
+        if (cabeza == null) {
+            cabeza = nuevoNodo;
+        } else {
+            NodoGenerico<T> actual = cabeza;
+            while (actual.getSiguiente() != null) {
+                actual = actual.getSiguiente();
+            }
+            actual.setSiguiente(nuevoNodo);
+        }
+        tamaño++;
+    }
+
+    
+    public T obtener(int indice) {
+        if (indice < 0 || indice >= tamaño) {
+            return null; 
+        }
+        
+        NodoGenerico<T> actual = cabeza;
+        for (int i = 0; i < indice; i++) {
+            actual = actual.getSiguiente();
+        }
+        return actual.getDato();
+    }
+
+
+    public int getTamaño() {
+        return tamaño;
+    }
+
+
+    public boolean estaVacia() {
+        return cabeza == null;
+    }
+}

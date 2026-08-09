@@ -1,13 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package com.mycompany.practica1ipc2.frontend;
 
-/**
- *
- * @author arcan
- */
+
 public class MenuPrincipal extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MenuPrincipal.class.getName());
@@ -18,6 +11,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     public MenuPrincipal() {
         initComponents();
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -31,7 +26,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu5 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        escritorioPrincipal = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         MenuAdmin = new javax.swing.JMenu();
         btnGestionPersonal = new javax.swing.JMenuItem();
@@ -57,20 +52,21 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout escritorioPrincipalLayout = new javax.swing.GroupLayout(escritorioPrincipal);
+        escritorioPrincipal.setLayout(escritorioPrincipalLayout);
+        escritorioPrincipalLayout.setHorizontalGroup(
+            escritorioPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 700, Short.MAX_VALUE)
         );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        escritorioPrincipalLayout.setVerticalGroup(
+            escritorioPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 677, Short.MAX_VALUE)
         );
 
         MenuAdmin.setText("Administracion");
 
         btnGestionPersonal.setText("Gestion de Personal");
+        btnGestionPersonal.addActionListener(this::btnGestionPersonalActionPerformed);
         MenuAdmin.add(btnGestionPersonal);
 
         btnGestionNominas.setText("Gestion de Nominas");
@@ -124,11 +120,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(escritorioPrincipal)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(escritorioPrincipal)
         );
 
         pack();
@@ -137,6 +133,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void btnGestionCuentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionCuentasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGestionCuentasActionPerformed
+
+    private void btnGestionPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionPersonalActionPerformed
+   
+        ModuloPersonal ventanaPersonal = new ModuloPersonal();
+
+        escritorioPrincipal.add(ventanaPersonal);
+
+  
+        ventanaPersonal.setVisible(true);
+    }//GEN-LAST:event_btnGestionPersonalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -179,7 +185,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem btnGestionPersonal;
     private javax.swing.JMenuItem btnProductosMasVendidos;
     private javax.swing.JMenu btnSalir;
-    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JDesktopPane escritorioPrincipal;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
