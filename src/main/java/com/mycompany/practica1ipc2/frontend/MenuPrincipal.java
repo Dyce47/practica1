@@ -64,6 +64,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         MenuAdmin.add(btnGestionPersonal);
 
         btnGestionNominas.setText("Gestion de Nominas");
+        btnGestionNominas.addActionListener(this::btnGestionNominasActionPerformed);
         MenuAdmin.add(btnGestionNominas);
 
         jMenuBar1.add(MenuAdmin);
@@ -75,6 +76,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         MenuAlmacen.add(btnGestionInventario);
 
         btnGestionMenu.setText("Gestion de Menu");
+        btnGestionMenu.addActionListener(this::btnGestionMenuActionPerformed);
         MenuAlmacen.add(btnGestionMenu);
 
         jMenuBar1.add(MenuAlmacen);
@@ -147,6 +149,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
         
         ventanaInventario.setVisible(true);
     }//GEN-LAST:event_btnGestionInventarioActionPerformed
+
+    private void btnGestionNominasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionNominasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGestionNominasActionPerformed
+
+    private void btnGestionMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionMenuActionPerformed
+        ModuloMenu ventanaMenu = new ModuloMenu();
+        escritorioPrincipal.add(ventanaMenu);
+        ventanaMenu.setVisible(true);
+    }//GEN-LAST:event_btnGestionMenuActionPerformed
 
     /**
      * @param args the command line arguments
