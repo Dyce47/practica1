@@ -83,7 +83,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         MenuOperaciones.setText("Operaciones");
 
-        btnControlMesas.setText("Control de Mesas");
+        btnControlMesas.setText("Mesas y Pedido");
+        btnControlMesas.addActionListener(this::btnControlMesasActionPerformed);
         MenuOperaciones.add(btnControlMesas);
 
         btnGestionCuentas.setText("Gestion de Cuentas");
@@ -159,6 +160,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
         escritorioPrincipal.add(ventanaMenu);
         ventanaMenu.setVisible(true);
     }//GEN-LAST:event_btnGestionMenuActionPerformed
+
+    private void btnControlMesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnControlMesasActionPerformed
+        ModuloMesasPedido ventanaMesasPedidios = new ModuloMesasPedido();
+        escritorioPrincipal.add(ventanaMesasPedidios);
+        ventanaMesasPedidios.setVisible(true);
+    }//GEN-LAST:event_btnControlMesasActionPerformed
 
     /**
      * @param args the command line arguments

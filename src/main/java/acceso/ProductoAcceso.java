@@ -208,4 +208,51 @@ public class ProductoAcceso implements MantenimientoAcceso<Producto> {
         
         return ruta;
     }
+    
+    
+    public String verificarStockParaProducto(String codigoProducto, int cantidadTotalSolicitada) {
+        String mensajeError = null;
+        
+        String sqlReceta = "SELECT Codigo_Insumo, Cantidad_Necesaria FROM receta WHERE Codigo_Producto = ?";
+
+        try (Connection conn = Conexion.getConexion();
+             PreparedStatement stmtReceta = conn.prepareStatement(sqlReceta)) {
+
+            stmtReceta.setString(1, codigoProducto);
+
+            try (ResultSet rsReceta = stmtReceta.executeQuery()) {
+                
+                while (rsReceta.next()) {
+                    String codigoInsumo = rsReceta.getString("Codigo_Insumo");
+                    double cantidadNecesaria = rsReceta.getDouble("Cantidad_Necesaria");
+
+                    double cantidadRequerida = cantidadNecesaria * cantidadTotalSolicitada;
+
+                    String sqlInsumo = "SELECT Nombre, Stock_Actual FROM insumo WHERE Codigo_Insumo = ?";
+                    
+                    try (PreparedStatement stmtInsumo = conn.prepareStatement(sqlInsumo)) {
+                        stmtInsumo.setString(1, codigoInsumo);
+                        
+                        try (ResultSet rsInsumo = stmtInsumo.executeQuery()) {
+                            if (rsInsumo.next()) {
+                                String nombreInsumo = rsInsumo.getString("Nombre");
+                                double stockActual = rsInsumo.getDouble("Stock_Actual");
+
+       
+                                if (stockActual < cantidadRequerida) {
+                                    mensajeError = "No se puede añadir el producto.\n" + "Insumo insuficiente: " + nombreInsumo + "\n" + "Disponible: " + stockActual + "\n" + "Requerido: " + cantidadRequerida;                                                 
+                                    return mensajeError; 
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (java.sql.SQLException e) {
+            System.err.println("Error al verificar inventario en Java: " + e.getMessage());
+            mensajeError = "Error de base de datos al verificar existencias.";
+        }
+        
+        return mensajeError; 
+    }
 }

@@ -2,6 +2,7 @@ package acceso;
 
 import conexion.Conexion;
 import entidades.Empleado;
+import entidades.RolEmpleado;
 import estructuras.ListaDinamica;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -122,7 +123,7 @@ public class EmpleadoAcceso implements MantenimientoAcceso<Empleado> {
                 if (rs.next()) {
                     String nombre = rs.getString("Nombre_Completo");
                     String correo = rs.getString("Correo");
-                    entidades.RolEmpleado rol = entidades.RolEmpleado.valueOf(rs.getString("Rol"));
+                    RolEmpleado rol = RolEmpleado.valueOf(rs.getString("Rol"));
                     entidades.Jornada jornada = entidades.Jornada.valueOf(rs.getString("Jornada"));
                     double salario = rs.getDouble("Salario");
                     java.sql.Date fecha = rs.getDate("Fecha_Contratacion");
@@ -171,5 +172,29 @@ public class EmpleadoAcceso implements MantenimientoAcceso<Empleado> {
         }
         
         return listaFiltrada;
+    }
+    
+    
+    public ListaDinamica<Empleado> listarMeserosActivos() {
+        ListaDinamica<Empleado> listaMeseros = new ListaDinamica<>();
+        
+        String sql = "SELECT DPI, Nombre_Completo FROM empleado WHERE Rol = 'MESERO' AND Estado = 1";
+        
+        try (Connection conn = conexion.Conexion.getConexion();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+             
+            while (rs.next()) {
+                Empleado emp = new Empleado();
+                emp.setDpi(rs.getString("DPI"));
+                emp.setNombreCompleto(rs.getString("Nombre_Completo"));            
+                listaMeseros.agregar(emp);
+            }
+            
+        } catch (java.sql.SQLException e) {
+            System.err.println("Error al extraer meseros: " + e.getMessage());
+        }
+        
+        return listaMeseros;
     }
 }
