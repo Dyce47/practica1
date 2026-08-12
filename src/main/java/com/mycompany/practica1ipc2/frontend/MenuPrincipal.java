@@ -9,10 +9,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     public MenuPrincipal() {
         initComponents();
     }
-    
-    
-
-
+       
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -59,10 +56,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         MenuAdmin.setText("Administracion");
 
+        btnGestionPersonal.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         btnGestionPersonal.setText("Gestion de Personal");
         btnGestionPersonal.addActionListener(this::btnGestionPersonalActionPerformed);
         MenuAdmin.add(btnGestionPersonal);
 
+        btnGestionNominas.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         btnGestionNominas.setText("Gestion de Nominas");
         btnGestionNominas.addActionListener(this::btnGestionNominasActionPerformed);
         MenuAdmin.add(btnGestionNominas);
@@ -71,10 +70,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         MenuAlmacen.setText("Almacen");
 
+        btnGestionInventario.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         btnGestionInventario.setText("Gestion de Inventario");
         btnGestionInventario.addActionListener(this::btnGestionInventarioActionPerformed);
         MenuAlmacen.add(btnGestionInventario);
 
+        btnGestionMenu.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         btnGestionMenu.setText("Gestion de Menu");
         btnGestionMenu.addActionListener(this::btnGestionMenuActionPerformed);
         MenuAlmacen.add(btnGestionMenu);
@@ -83,10 +84,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         MenuOperaciones.setText("Operaciones");
 
+        btnControlMesas.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         btnControlMesas.setText("Mesas y Pedido");
         btnControlMesas.addActionListener(this::btnControlMesasActionPerformed);
         MenuOperaciones.add(btnControlMesas);
 
+        btnGestionCuentas.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         btnGestionCuentas.setText("Gestion de Cuentas");
         btnGestionCuentas.addActionListener(this::btnGestionCuentasActionPerformed);
         MenuOperaciones.add(btnGestionCuentas);
@@ -95,12 +98,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         MenuReportes.setText("Reportes");
 
+        btnFlujoCaja.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         btnFlujoCaja.setText("Flujo de Caja");
         MenuReportes.add(btnFlujoCaja);
 
+        btnProductosMasVendidos.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         btnProductosMasVendidos.setText("Productos Mas Vendidos");
         MenuReportes.add(btnProductosMasVendidos);
 
+        btnBajoStock.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         btnBajoStock.setText("Insumos con Bajo Stock");
         MenuReportes.add(btnBajoStock);
 
@@ -137,24 +143,21 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void btnGestionPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionPersonalActionPerformed
    
         ModuloPersonal ventanaPersonal = new ModuloPersonal();
-
-        escritorioPrincipal.add(ventanaPersonal);
-
-  
+        escritorioPrincipal.add(ventanaPersonal); 
         ventanaPersonal.setVisible(true);
     }//GEN-LAST:event_btnGestionPersonalActionPerformed
 
     private void btnGestionInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionInventarioActionPerformed
         
-        ModuloInventario ventanaInventario = new ModuloInventario();
-        
-        escritorioPrincipal.add(ventanaInventario);
-        
+        ModuloInventario ventanaInventario = new ModuloInventario();       
+        escritorioPrincipal.add(ventanaInventario);        
         ventanaInventario.setVisible(true);
     }//GEN-LAST:event_btnGestionInventarioActionPerformed
 
     private void btnGestionNominasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionNominasActionPerformed
-        // TODO add your handling code here:
+        ModuloNominas ventanaNominas = new ModuloNominas();
+        escritorioPrincipal.add(ventanaNominas);
+        ventanaNominas.setVisible(true);
     }//GEN-LAST:event_btnGestionNominasActionPerformed
 
     private void btnGestionMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionMenuActionPerformed
@@ -169,9 +172,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         ventanaMesasPedidios.setVisible(true);
     }//GEN-LAST:event_btnControlMesasActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

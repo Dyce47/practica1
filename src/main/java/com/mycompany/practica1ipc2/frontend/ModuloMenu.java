@@ -124,6 +124,7 @@ public class ModuloMenu extends javax.swing.JInternalFrame {
         btnQuitarInsumo = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
 
+        tablaProductos.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         tablaProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -137,17 +138,21 @@ public class ModuloMenu extends javax.swing.JInternalFrame {
         ));
         jScrollPane2.setViewportView(tablaProductos);
 
+        btnModificar.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         btnModificar.setText("Modificar");
         btnModificar.addActionListener(this::btnModificarActionPerformed);
 
         jLabel1.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel1.setText("Busqueda por nombre:");
 
+        comboCategoria.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         comboCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bebida caliente", "Bebida fria", "Postre", "Comida" }));
 
+        btnFiltrar.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         btnFiltrar.setText("Filtrar");
         btnFiltrar.addActionListener(this::btnFiltrarActionPerformed);
 
+        btnBuscar.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(this::btnBuscarActionPerformed);
 
@@ -164,7 +169,7 @@ public class ModuloMenu extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtBuscarNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
+                .addComponent(txtBuscarNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnBuscar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -195,28 +200,30 @@ public class ModuloMenu extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel2.setText("Ingresa los siguientes datos para añadir un nuevo producto al menu");
 
-        jLabel3.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel3.setText("Codigo de producto:");
 
-        jLabel4.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel4.setText("Nombre de producto :");
 
-        jLabel5.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel5.setText("Categoria :");
 
         comboCategoria2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BEBIDA_CALIENTE", "BEBIDA_FRIA", "POSTRE", "COMIDA" }));
 
-        jLabel6.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel6.setText("Precio de venta :");
 
-        jLabel7.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel7.setText("Imagen de referencia :");
 
         lblFoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        btnPasarReceta.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         btnPasarReceta.setText("Pasar a receta");
         btnPasarReceta.addActionListener(this::btnPasarRecetaActionPerformed);
 
+        btnCargarImagen.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         btnCargarImagen.setText("Cargar Imagen");
         btnCargarImagen.addActionListener(this::btnCargarImagenActionPerformed);
 
@@ -257,16 +264,16 @@ public class ModuloMenu extends javax.swing.JInternalFrame {
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGap(313, 313, 313)
                                 .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 32, Short.MAX_VALUE)))
+                        .addGap(0, 35, Short.MAX_VALUE)))
                 .addGap(33, 33, 33))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnCargarImagen)
-                .addGap(118, 118, 118))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(241, 241, 241)
                 .addComponent(btnPasarReceta)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCargarImagen)
+                .addGap(103, 103, 103))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -295,9 +302,9 @@ public class ModuloMenu extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnCargarImagen)
-                        .addGap(42, 42, 42)
+                        .addGap(36, 36, 36)
                         .addComponent(btnPasarReceta)
                         .addGap(22, 22, 22))))
         );
@@ -307,12 +314,16 @@ public class ModuloMenu extends javax.swing.JInternalFrame {
         jLabel9.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel9.setText("Busca e ingresa los insumos necesarios para la elaboracion del producto ");
 
-        jLabel10.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel10.setText("Busqueda por nombre :");
 
+        txtBuscarInsumo.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+
+        btnBuscar2.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         btnBuscar2.setText("Buscar");
         btnBuscar2.addActionListener(this::btnBuscar2ActionPerformed);
 
+        tablaBusquedaInsumo.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         tablaBusquedaInsumo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -326,12 +337,14 @@ public class ModuloMenu extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(tablaBusquedaInsumo);
 
+        btnAgregarInsumo.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         btnAgregarInsumo.setText("Agregar insumo a la receta");
         btnAgregarInsumo.addActionListener(this::btnAgregarInsumoActionPerformed);
 
         jLabel11.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel11.setText("Listado de insumos agregados a la receta del producto ");
 
+        tablaIngredientes.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         tablaIngredientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -342,9 +355,11 @@ public class ModuloMenu extends javax.swing.JInternalFrame {
         ));
         jScrollPane3.setViewportView(tablaIngredientes);
 
+        btnQuitarInsumo.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         btnQuitarInsumo.setText("Quitar insumo");
         btnQuitarInsumo.addActionListener(this::btnQuitarInsumoActionPerformed);
 
+        btnGuardar.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         btnGuardar.setText("Guardar Producto");
         btnGuardar.addActionListener(this::btnGuardarActionPerformed);
 
@@ -355,7 +370,7 @@ public class ModuloMenu extends javax.swing.JInternalFrame {
             .addComponent(jScrollPane1)
             .addComponent(jScrollPane3)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(52, Short.MAX_VALUE)
+                .addContainerGap(55, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -401,7 +416,7 @@ public class ModuloMenu extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnQuitarInsumo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addComponent(btnGuardar)
                 .addGap(17, 17, 17))
         );

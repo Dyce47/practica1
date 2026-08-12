@@ -4,6 +4,7 @@ entidades\EstadoCuenta.class
 estructuras\ListaDinamica.class
 com\mycompany\practica1ipc2\Main.class
 entidades\Cuenta.class
+entidades\Nomina.class
 entidades\RolEmpleado.class
 entidades\EstadoMesa.class
 utilidades\Pintor.class
@@ -11,6 +12,7 @@ entidades\Receta.class
 entidades\Mesa.class
 com\mycompany\practica1ipc2\frontend\ModuloInventario.class
 acceso\EmpleadoAcceso.class
+acceso\NominaAcceso.class
 com\mycompany\practica1ipc2\frontend\ModuloPersonal.class
 entidades\Producto.class
 conexion\Conexion.class
@@ -18,12 +20,15 @@ entidades\Empleado.class
 entidades\Insumo.class
 acceso\InsumoAcceso.class
 entidades\CategoriaProducto.class
+entidades\EstadoPago.class
 entidades\Jornada.class
 acceso\MesaAcceso.class
 estructuras\NodoGenerico.class
 com\mycompany\practica1ipc2\frontend\ModuloCuentas.class
+com\mycompany\practica1ipc2\frontend\ModuloNominas.class
 acceso\ProductoAcceso.class
 acceso\MantenimientoAcceso.class
 com\mycompany\practica1ipc2\frontend\ModuloMesasPedido.class
 acceso\CuentaAcceso.class
 com\mycompany\practica1ipc2\frontend\MenuPrincipal.class
+entidades\TipoPago.class
