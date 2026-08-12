@@ -1,5 +1,6 @@
 package acceso;
 
+import conexion.Conexion;
 import entidades.Cuenta;
 import entidades.EstadoCuenta;
 import estructuras.ListaDinamica;
@@ -175,4 +176,190 @@ public class CuentaAcceso implements MantenimientoAcceso<Cuenta> {
             } catch (SQLException e) {}
         }
     }
+    
+    
+    public estructuras.ListaDinamica<Object[]> listarCuentasAbiertasVisual() {
+        ListaDinamica<Object[]> listaVisual = new ListaDinamica<>();       
+        String sqlCuenta = "SELECT Numero_Mesa, DPI_Mesero, ID_Cuenta, Total_Pagar FROM cuenta WHERE Estado = 'ABIERTA' ORDER BY Fecha_Hora_Ocupacion ASC";
+        
+        try (Connection conn = conexion.Conexion.getConexion();
+             PreparedStatement stmt = conn.prepareStatement(sqlCuenta);
+             ResultSet rs = stmt.executeQuery()) {
+             
+            while (rs.next()) {
+                int noMesa = rs.getInt("Numero_Mesa");
+                String dpi = rs.getString("DPI_Mesero");
+                int idCuenta = rs.getInt("ID_Cuenta");
+                double total = rs.getDouble("Total_Pagar");
+                
+                String nombreMesero = "Desconocido";
+                
+                String sqlEmp = "SELECT Nombre_Completo FROM empleado WHERE DPI = ?";
+                try (PreparedStatement stmtEmp = conn.prepareStatement(sqlEmp)) {
+                    stmtEmp.setString(1, dpi);
+                    try (ResultSet rsEmp = stmtEmp.executeQuery()) {
+                        if (rsEmp.next()) {
+                            nombreMesero = rsEmp.getString("Nombre_Completo");
+                        }
+                    }
+                }
+                
+                listaVisual.agregar(new Object[]{noMesa, nombreMesero, dpi, idCuenta, total});
+            }
+            
+        } catch (java.sql.SQLException e) {
+            System.err.println("Error al listar cuentas visuales: " + e.getMessage());
+        }
+        
+        return listaVisual;
+    }
+    
+    
+    public ListaDinamica<Object[]> obtenerDetallesCuenta(int idCuenta) {
+        ListaDinamica<Object[]> listaDetalles = new ListaDinamica<>();
+        
+        String sqlDetalle = "SELECT Codigo_Producto, Cantidad, Subtotal FROM detalle_cuenta WHERE ID_Cuenta = ?";
+        
+        try (Connection conn = conexion.Conexion.getConexion();
+             PreparedStatement stmtDet = conn.prepareStatement(sqlDetalle)) {
+             
+            stmtDet.setInt(1, idCuenta);
+            
+            try (ResultSet rsDet = stmtDet.executeQuery()) {
+                while (rsDet.next()) {
+                    String codigo = rsDet.getString("Codigo_Producto");
+                    int cantidad = rsDet.getInt("Cantidad");
+                    double subtotal = rsDet.getDouble("Subtotal");
+                    
+                    String nombreProducto = "Desconocido";
+                    double precioUnitario = 0.0;
+                    
+                    String sqlProd = "SELECT Nombre, Precio_Venta FROM producto WHERE Codigo_Producto = ?";
+                    try (PreparedStatement stmtProd = conn.prepareStatement(sqlProd)) {
+                        stmtProd.setString(1, codigo);
+                        try (ResultSet rsProd = stmtProd.executeQuery()) {
+                            if (rsProd.next()) {
+                                nombreProducto = rsProd.getString("Nombre");
+                                precioUnitario = rsProd.getDouble("Precio_Venta");
+                            }
+                        }
+                    }
+                    
+                    listaDetalles.agregar(new Object[]{codigo, nombreProducto, cantidad, precioUnitario, subtotal});
+                }
+            }
+        } catch (java.sql.SQLException e) {
+            System.err.println("Error al extraer detalles de cuenta: " + e.getMessage());
+        }
+        
+        return listaDetalles;
+    }
+    
+    
+    public boolean pagarCuentaTransaccional(int idCuenta, int numeroMesa, double totalFinal, double propina) {
+        Connection conn = null;
+        
+        try {
+            conn = conexion.Conexion.getConexion();
+            conn.setAutoCommit(false); 
+
+            String sqlCuenta = "UPDATE cuenta SET Estado = 'PAGADA', Fecha_Hora_Liberacion = NOW(), Total_Pagar = ?, Propina = ? WHERE ID_Cuenta = ?";
+            try (java.sql.PreparedStatement psCuenta = conn.prepareStatement(sqlCuenta)) {
+                psCuenta.setDouble(1, totalFinal);
+                psCuenta.setDouble(2, propina);
+                psCuenta.setInt(3, idCuenta);
+                psCuenta.executeUpdate();
+            }
+
+            String sqlMesa = "UPDATE mesa SET Estado = 'LIBRE' WHERE Numero_Mesa = ?";
+            try (PreparedStatement psMesa = conn.prepareStatement(sqlMesa)) {
+                psMesa.setInt(1, numeroMesa);
+                psMesa.executeUpdate();
+            }
+
+            conn.commit(); 
+            return true;
+
+        } catch (java.sql.SQLException e) {
+            System.err.println("Error al cobrar cuenta. Aplicando Rollback: " + e.getMessage());
+            try {
+                if (conn != null) conn.rollback(); 
+            } catch (java.sql.SQLException ex) {
+                System.err.println("Error fatal al hacer rollback: " + ex.getMessage());
+            }
+            return false;
+        } finally {
+            try {
+                if (conn != null) conn.setAutoCommit(true); 
+            } catch (java.sql.SQLException e) {}
+        }
+    }
+    
+    
+    public boolean agregarProductosExtraTransaccional(int idCuenta, double totalExtra, estructuras.ListaDinamica<Object[]> nuevosProductos) {
+        Connection conn = null;
+        try {
+            conn = Conexion.getConexion();
+            conn.setAutoCommit(false); 
+
+            String sqlCuenta = "UPDATE cuenta SET Total_Pagar = Total_Pagar + ? WHERE ID_Cuenta = ?";
+            try (PreparedStatement psCuenta = conn.prepareStatement(sqlCuenta)) {
+                psCuenta.setDouble(1, totalExtra);
+                psCuenta.setInt(2, idCuenta);
+                psCuenta.executeUpdate();
+            }
+
+            String sqlDetalle = "INSERT INTO detalle_cuenta (ID_Cuenta, Codigo_Producto, Cantidad, Subtotal) VALUES (?, ?, ?, ?)";
+            PreparedStatement psDetalle = conn.prepareStatement(sqlDetalle);
+            
+            String sqlReceta = "SELECT Codigo_Insumo, Cantidad_Necesaria FROM receta WHERE Codigo_Producto = ?";
+            PreparedStatement psReceta = conn.prepareStatement(sqlReceta);
+            
+            String sqlInventario = "UPDATE insumo SET Stock_Actual = Stock_Actual - ? WHERE Codigo_Insumo = ?";
+            PreparedStatement psInventario = conn.prepareStatement(sqlInventario);
+
+            for (int i = 0; i < nuevosProductos.getTamaño(); i++) {
+                Object[] fila = nuevosProductos.obtener(i);
+                String codProducto = fila[0].toString();
+                int cantidad = Integer.parseInt(fila[1].toString());
+                double subtotal = Double.parseDouble(fila[2].toString());
+
+                psDetalle.setInt(1, idCuenta);
+                psDetalle.setString(2, codProducto);
+                psDetalle.setInt(3, cantidad);
+                psDetalle.setDouble(4, subtotal);
+                psDetalle.executeUpdate();
+
+                psReceta.setString(1, codProducto);
+                try (java.sql.ResultSet rsReceta = psReceta.executeQuery()) {
+                    while (rsReceta.next()) {
+                        String codInsumo = rsReceta.getString("Codigo_Insumo");
+                        double cantidadNecesaria = rsReceta.getDouble("Cantidad_Necesaria");
+                        double totalADescontar = cantidadNecesaria * cantidad;
+                        
+                        psInventario.setDouble(1, totalADescontar);
+                        psInventario.setString(2, codInsumo);
+                        psInventario.executeUpdate();
+                    }
+                }
+            }
+            conn.commit(); 
+            return true;
+
+        } catch (java.sql.SQLException e) {
+            try {
+                if (conn != null){
+                    conn.rollback();
+                } 
+            } catch (java.sql.SQLException ex) {}
+            return false;
+        } finally {
+            try {
+                if (conn != null){
+                    conn.setAutoCommit(true);
+                } 
+            } catch (java.sql.SQLException e) {}
+        }
+    }
+    
 }

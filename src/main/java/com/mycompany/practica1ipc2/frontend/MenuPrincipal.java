@@ -129,7 +129,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGestionCuentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionCuentasActionPerformed
-        // TODO add your handling code here:
+        ModuloCuentas ventanaCuentas = new ModuloCuentas();
+        escritorioPrincipal.add(ventanaCuentas);
+        ventanaCuentas.setVisible(true);
     }//GEN-LAST:event_btnGestionCuentasActionPerformed
 
     private void btnGestionPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionPersonalActionPerformed
