@@ -10,6 +10,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     public MenuPrincipal() {
         initComponents();
+        
     }
        
     @SuppressWarnings("unchecked")
@@ -35,6 +36,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         btnExportarMenu = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         btnSalir = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         jMenu5.setText("jMenu5");
 
@@ -116,6 +118,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(btnExportarMenu);
 
         btnSalir.setText("Salir");
+
+        jMenuItem3.setText("Salir");
+        jMenuItem3.addActionListener(this::jMenuItem3ActionPerformed);
+        btnSalir.add(jMenuItem3);
+
         jMenuBar1.add(btnSalir);
 
         setJMenuBar(jMenuBar1);
@@ -183,6 +190,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         generador.generarMenuHTML();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        int confirmacion = javax.swing.JOptionPane.showConfirmDialog(this,"¿Estás seguro que deseas salir del sistema del restaurante?", "Confirmar Salida", javax.swing.JOptionPane.YES_NO_OPTION, javax.swing.JOptionPane.QUESTION_MESSAGE);
+        if (confirmacion == javax.swing.JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -224,6 +238,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem8;
     // End of variables declaration//GEN-END:variables
 }

@@ -24,6 +24,7 @@ public class ModuloMenu extends javax.swing.JInternalFrame {
     public ModuloMenu() {
         initComponents();
         dibujarTablaProductos(new ProductoAcceso().listarTodos());
+        moduloMenu.setEnabledAt(2, false);
     }
     
     
@@ -438,7 +439,8 @@ public class ModuloMenu extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPasarRecetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPasarRecetaActionPerformed
-
+        
+    moduloMenu.setEnabledAt(2, true);    
     String codigo = txtProducto.getText().trim();
     String nombre = txtNombre.getText().trim();
     String precioStr = txtPrecio.getText().trim();
@@ -633,6 +635,8 @@ public class ModuloMenu extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        moduloMenu.setEnabledAt(2, false);
+        moduloMenu.setEnabledAt(0, true);
         try {
 
             String codigo = txtProducto.getText().trim();
@@ -681,7 +685,7 @@ public class ModuloMenu extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-
+             
             int fila = tablaProductos.getSelectedRow();
     
             if (fila == -1) {
