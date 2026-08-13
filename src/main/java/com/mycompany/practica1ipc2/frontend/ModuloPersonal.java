@@ -87,7 +87,6 @@ public class ModuloPersonal extends javax.swing.JInternalFrame {
         jLabel8 = new javax.swing.JLabel();
         comboRol = new javax.swing.JComboBox<>();
         comboJornada = new javax.swing.JComboBox<>();
-        btnLimpiar = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
         chkEstado = new javax.swing.JCheckBox();
         jPanel2 = new javax.swing.JPanel();
@@ -136,10 +135,6 @@ public class ModuloPersonal extends javax.swing.JInternalFrame {
 
         comboJornada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Matutina", "Vespertina", "Nocturna" }));
 
-        btnLimpiar.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        btnLimpiar.setText("Limpiar");
-        btnLimpiar.addActionListener(this::btnLimpiarActionPerformed);
-
         btnGuardar.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(this::btnGuardarActionPerformed);
@@ -175,10 +170,6 @@ public class ModuloPersonal extends javax.swing.JInternalFrame {
                                         .addComponent(jLabel8))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(btnLimpiar)
-                                            .addGap(48, 48, 48)
-                                            .addComponent(btnGuardar))
                                         .addComponent(comboRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(comboJornada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -189,6 +180,10 @@ public class ModuloPersonal extends javax.swing.JInternalFrame {
                                             .addComponent(chkEstado)
                                             .addGap(14, 14, 14))))))))
                 .addContainerGap(76, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnGuardar)
+                .addGap(279, 279, 279))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,11 +219,9 @@ public class ModuloPersonal extends javax.swing.JInternalFrame {
                     .addComponent(jLabel8)
                     .addComponent(txtFechaContratacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(chkEstado))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnLimpiar)
-                    .addComponent(btnGuardar))
-                .addGap(38, 38, 38))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addComponent(btnGuardar)
+                .addGap(44, 44, 44))
         );
 
         panelPestanas.addTab("Registro de Empleado", jPanel1);
@@ -289,13 +282,13 @@ public class ModuloPersonal extends javax.swing.JInternalFrame {
                     .addComponent(cbCriterio, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnEditar)
-                .addGap(229, 229, 229))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnEditar)
+                .addGap(205, 205, 205))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -423,10 +416,6 @@ public class ModuloPersonal extends javax.swing.JInternalFrame {
         } 
     }//GEN-LAST:event_btnGuardarActionPerformed
 
-    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        limpiarFormulario();
-    }//GEN-LAST:event_btnLimpiarActionPerformed
-
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
 
         String dpiBuscado = txtBusquedaDPI.getText().trim();
@@ -532,7 +521,6 @@ public class ModuloPersonal extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnFiltrar;
     private javax.swing.JButton btnGuardar;
-    private javax.swing.JButton btnLimpiar;
     private javax.swing.JComboBox<String> cbCriterio;
     private javax.swing.JComboBox<String> cbValor;
     private javax.swing.JCheckBox chkEstado;

@@ -1,3 +1,4 @@
+C:\Users\arcan\Documents\NetBeansProjects\Practica1IPC2\src\main\java\acceso\CompraAcceso.java
 C:\Users\arcan\Documents\NetBeansProjects\Practica1IPC2\src\main\java\acceso\CuentaAcceso.java
 C:\Users\arcan\Documents\NetBeansProjects\Practica1IPC2\src\main\java\acceso\EmpleadoAcceso.java
 C:\Users\arcan\Documents\NetBeansProjects\Practica1IPC2\src\main\java\acceso\InsumoAcceso.java
@@ -12,9 +13,11 @@ C:\Users\arcan\Documents\NetBeansProjects\Practica1IPC2\src\main\java\com\mycomp
 C:\Users\arcan\Documents\NetBeansProjects\Practica1IPC2\src\main\java\com\mycompany\practica1ipc2\frontend\ModuloMesasPedido.java
 C:\Users\arcan\Documents\NetBeansProjects\Practica1IPC2\src\main\java\com\mycompany\practica1ipc2\frontend\ModuloNominas.java
 C:\Users\arcan\Documents\NetBeansProjects\Practica1IPC2\src\main\java\com\mycompany\practica1ipc2\frontend\ModuloPersonal.java
+C:\Users\arcan\Documents\NetBeansProjects\Practica1IPC2\src\main\java\com\mycompany\practica1ipc2\frontend\ModuloReportes.java
 C:\Users\arcan\Documents\NetBeansProjects\Practica1IPC2\src\main\java\com\mycompany\practica1ipc2\Main.java
 C:\Users\arcan\Documents\NetBeansProjects\Practica1IPC2\src\main\java\conexion\Conexion.java
 C:\Users\arcan\Documents\NetBeansProjects\Practica1IPC2\src\main\java\entidades\CategoriaProducto.java
+C:\Users\arcan\Documents\NetBeansProjects\Practica1IPC2\src\main\java\entidades\CompraInsumo.java
 C:\Users\arcan\Documents\NetBeansProjects\Practica1IPC2\src\main\java\entidades\Cuenta.java
 C:\Users\arcan\Documents\NetBeansProjects\Practica1IPC2\src\main\java\entidades\Empleado.java
 C:\Users\arcan\Documents\NetBeansProjects\Practica1IPC2\src\main\java\entidades\EstadoCuenta.java
@@ -30,5 +33,6 @@ C:\Users\arcan\Documents\NetBeansProjects\Practica1IPC2\src\main\java\entidades\
 C:\Users\arcan\Documents\NetBeansProjects\Practica1IPC2\src\main\java\entidades\TipoPago.java
 C:\Users\arcan\Documents\NetBeansProjects\Practica1IPC2\src\main\java\estructuras\ListaDinamica.java
 C:\Users\arcan\Documents\NetBeansProjects\Practica1IPC2\src\main\java\estructuras\NodoGenerico.java
+C:\Users\arcan\Documents\NetBeansProjects\Practica1IPC2\src\main\java\reportes\GeneradorReportes.java
 C:\Users\arcan\Documents\NetBeansProjects\Practica1IPC2\src\main\java\utilidades\Pintor.java
 C:\Users\arcan\Documents\NetBeansProjects\Practica1IPC2\src\main\java\utilidades\PintorMesas.java

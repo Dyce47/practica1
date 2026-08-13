@@ -1,5 +1,6 @@
 package com.mycompany.practica1ipc2.frontend;
 
+import acceso.CompraAcceso;
 import acceso.InsumoAcceso;
 import entidades.Insumo;
 import estructuras.ListaDinamica;
@@ -95,7 +96,6 @@ public class ModuloInventario extends javax.swing.JInternalFrame {
         txtCosto = new javax.swing.JTextField();
         txtStock = new javax.swing.JTextField();
         txtStockMinimo = new javax.swing.JTextField();
-        btnLimpiar = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -230,10 +230,6 @@ public class ModuloInventario extends javax.swing.JInternalFrame {
 
         txtStockMinimo.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
 
-        btnLimpiar.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        btnLimpiar.setText("Limpiar");
-        btnLimpiar.addActionListener(this::btnLimpiarActionPerformed);
-
         btnGuardar.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(this::btnGuardarActionPerformed);
@@ -262,28 +258,23 @@ public class ModuloInventario extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(162, 162, 162)
-                                .addComponent(btnLimpiar)))
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addComponent(jLabel8)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtStockMinimo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addComponent(btnGuardar)))))
+                        .addComponent(jLabel7)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel8)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtStockMinimo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(82, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(77, 77, 77))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(77, 77, 77))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(btnGuardar)
+                        .addGap(295, 295, 295))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -312,11 +303,9 @@ public class ModuloInventario extends javax.swing.JInternalFrame {
                     .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
                     .addComponent(txtStockMinimo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(102, 102, 102)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnLimpiar)
-                    .addComponent(btnGuardar))
-                .addGap(82, 82, 82))
+                .addGap(109, 109, 109)
+                .addComponent(btnGuardar)
+                .addGap(75, 75, 75))
         );
 
         pestañasInsumo.addTab("Registrar nuevo insumo", jPanel3);
@@ -390,41 +379,41 @@ public class ModuloInventario extends javax.swing.JInternalFrame {
         int filaSeleccionada = tablaInsumos.getSelectedRow();
     
         if (filaSeleccionada == -1) {
-           
-            showMessageDialog(this, "Por favor, selecciona un insumo de la tabla primero.", "Atención", javax.swing.JOptionPane.WARNING_MESSAGE);
+            javax.swing.JOptionPane.showMessageDialog(this, "Por favor, selecciona un insumo de la tabla primero.", "Atención", javax.swing.JOptionPane.WARNING_MESSAGE);
             return; 
         }
     
-        
         String codigo = tablaInsumos.getValueAt(filaSeleccionada, 0).toString();
         String nombre = tablaInsumos.getValueAt(filaSeleccionada, 1).toString();
+        
+
+        double costoUnitario = Double.parseDouble(tablaInsumos.getValueAt(filaSeleccionada, 3).toString());
     
-   
-        String input = showInputDialog(this, "¿Cuántas unidades de [" + nombre + "] deseas ingresar al inventario?", "Abastecer Insumo", javax.swing.JOptionPane.QUESTION_MESSAGE);
+        String input = javax.swing.JOptionPane.showInputDialog(this, "¿Cuántas unidades de [" + nombre + "] deseas ingresar al inventario?", "Abastecer Insumo", javax.swing.JOptionPane.QUESTION_MESSAGE);
             
         if (input != null && !input.trim().isEmpty()) {
             try {
-                
                 double cantidadComprada = Double.parseDouble(input.trim());
             
                 if (cantidadComprada <= 0) {
-                    JOptionPane.showMessageDialog(this, "La cantidad a ingresar debe ser mayor a cero.", "Dato Inválido", javax.swing.JOptionPane.WARNING_MESSAGE);
+                    javax.swing.JOptionPane.showMessageDialog(this, "La cantidad a ingresar debe ser mayor a cero.", "Dato Inválido", javax.swing.JOptionPane.WARNING_MESSAGE);
                     return;
                 }
             
-                InsumoAcceso acceso = new InsumoAcceso();
+                double totalCompra = cantidadComprada * costoUnitario;
             
-                if (acceso.abastecerInsumo(codigo, cantidadComprada)) {
-                    JOptionPane.showMessageDialog(this, "¡Inventario de " + nombre + " actualizado con éxito!");
+                CompraAcceso accesoCompra = new CompraAcceso();
+            
+                if (accesoCompra.registrarCompra(codigo, cantidadComprada, totalCompra)) {
+                    javax.swing.JOptionPane.showMessageDialog(this, "¡Inventario de " + nombre + " actualizado con éxito!\nSe registró una compra por Q" + totalCompra);
                 
                     cargarTablaInsumos();
                 } else {
-                    JOptionPane.showMessageDialog(this, "Ocurrió un error al intentar actualizar el stock en la base de datos.", "Error SQL", javax.swing.JOptionPane.ERROR_MESSAGE);
+                    javax.swing.JOptionPane.showMessageDialog(this, "Ocurrió un error al intentar actualizar el stock en la base de datos.", "Error SQL", javax.swing.JOptionPane.ERROR_MESSAGE);
                 }
             
             } catch (NumberFormatException e) {
-
-                JOptionPane.showMessageDialog(this, "Por favor, ingresa una cantidad numérica válida.", "Dato Inválido", javax.swing.JOptionPane.WARNING_MESSAGE);
+                javax.swing.JOptionPane.showMessageDialog(this, "Por favor, ingresa una cantidad numérica válida.", "Dato Inválido", javax.swing.JOptionPane.WARNING_MESSAGE);
             }   
         }
     }//GEN-LAST:event_btnAbastecerActionPerformed
@@ -483,30 +472,12 @@ public class ModuloInventario extends javax.swing.JInternalFrame {
         pestañasInsumo.setSelectedIndex(1);
     }//GEN-LAST:event_btnModificarActionPerformed
 
-    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        limpiarFormularioInsumos();
-    }//GEN-LAST:event_btnLimpiarActionPerformed
 
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbastecer;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnFiltrar;
     private javax.swing.JButton btnGuardar;
-    private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JComboBox<String> comboStock;
     private javax.swing.JLabel jLabel1;

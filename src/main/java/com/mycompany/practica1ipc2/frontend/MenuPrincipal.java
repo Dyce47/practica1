@@ -1,5 +1,7 @@
 package com.mycompany.practica1ipc2.frontend;
 
+import reportes.GeneradorReportes;
+
 
 public class MenuPrincipal extends javax.swing.JFrame {
     
@@ -29,10 +31,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         btnControlMesas = new javax.swing.JMenuItem();
         btnGestionCuentas = new javax.swing.JMenuItem();
         MenuReportes = new javax.swing.JMenu();
-        btnFlujoCaja = new javax.swing.JMenuItem();
-        btnProductosMasVendidos = new javax.swing.JMenuItem();
-        btnBajoStock = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         btnExportarMenu = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         btnSalir = new javax.swing.JMenu();
 
         jMenu5.setText("jMenu5");
@@ -98,21 +99,20 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         MenuReportes.setText("Reportes");
 
-        btnFlujoCaja.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        btnFlujoCaja.setText("Flujo de Caja");
-        MenuReportes.add(btnFlujoCaja);
-
-        btnProductosMasVendidos.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        btnProductosMasVendidos.setText("Productos Mas Vendidos");
-        MenuReportes.add(btnProductosMasVendidos);
-
-        btnBajoStock.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
-        btnBajoStock.setText("Insumos con Bajo Stock");
-        MenuReportes.add(btnBajoStock);
+        jMenuItem1.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        jMenuItem1.setText("Generar reportes");
+        jMenuItem1.addActionListener(this::jMenuItem1ActionPerformed);
+        MenuReportes.add(jMenuItem1);
 
         jMenuBar1.add(MenuReportes);
 
         btnExportarMenu.setText("Exportar Menu");
+
+        jMenuItem2.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        jMenuItem2.setText("Exportar");
+        jMenuItem2.addActionListener(this::jMenuItem2ActionPerformed);
+        btnExportarMenu.add(jMenuItem2);
+
         jMenuBar1.add(btnExportarMenu);
 
         btnSalir.setText("Salir");
@@ -172,7 +172,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
         ventanaMesasPedidios.setVisible(true);
     }//GEN-LAST:event_btnControlMesasActionPerformed
 
-    
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        ModuloReportes ventanaReportes = new ModuloReportes();
+        escritorioPrincipal.add(ventanaReportes);
+        ventanaReportes.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        GeneradorReportes generador = new GeneradorReportes();
+        generador.generarMenuHTML();
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -200,21 +210,20 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu MenuAlmacen;
     private javax.swing.JMenu MenuOperaciones;
     private javax.swing.JMenu MenuReportes;
-    private javax.swing.JMenuItem btnBajoStock;
     private javax.swing.JMenuItem btnControlMesas;
     private javax.swing.JMenu btnExportarMenu;
-    private javax.swing.JMenuItem btnFlujoCaja;
     private javax.swing.JMenuItem btnGestionCuentas;
     private javax.swing.JMenuItem btnGestionInventario;
     private javax.swing.JMenuItem btnGestionMenu;
     private javax.swing.JMenuItem btnGestionNominas;
     private javax.swing.JMenuItem btnGestionPersonal;
-    private javax.swing.JMenuItem btnProductosMasVendidos;
     private javax.swing.JMenu btnSalir;
     private javax.swing.JDesktopPane escritorioPrincipal;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem8;
     // End of variables declaration//GEN-END:variables
 }

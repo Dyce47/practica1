@@ -422,10 +422,6 @@
                               <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="btnAgregarInsumo" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="198" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
                               <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
                           </Group>
@@ -436,6 +432,10 @@
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="btnGuardar" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="218" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="btnAgregarInsumo" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="179" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>

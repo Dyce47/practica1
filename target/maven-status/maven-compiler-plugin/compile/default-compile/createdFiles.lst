@@ -1,6 +1,7 @@
 utilidades\PintorMesas.class
 com\mycompany\practica1ipc2\frontend\ModuloMenu.class
 entidades\EstadoCuenta.class
+acceso\CompraAcceso.class
 estructuras\ListaDinamica.class
 com\mycompany\practica1ipc2\Main.class
 entidades\Cuenta.class
@@ -22,9 +23,12 @@ acceso\InsumoAcceso.class
 entidades\CategoriaProducto.class
 entidades\EstadoPago.class
 entidades\Jornada.class
+reportes\GeneradorReportes.class
 acceso\MesaAcceso.class
 estructuras\NodoGenerico.class
 com\mycompany\practica1ipc2\frontend\ModuloCuentas.class
+entidades\CompraInsumo.class
+com\mycompany\practica1ipc2\frontend\ModuloReportes.class
 com\mycompany\practica1ipc2\frontend\ModuloNominas.class
 acceso\ProductoAcceso.class
 acceso\MantenimientoAcceso.class
